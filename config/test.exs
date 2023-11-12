@@ -17,7 +17,7 @@ config :todos, Todos.Repo,
 # you can enable the server option below.
 config :todos, TodosWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "uYH2FnzaPAACf7YsGFinSdXGEyIJFnm7HvKzFxShYE5gm1dOoeIEOxDTiRdg9mzL",
+  secret_key_base: "lSJk6U5RLmUBqpvAcJ/s3yW6q2XeLUwTxqOK6VE7TtA5FZ9ViEEXxEl0cb6Fh6s5",
   server: false
 
 # In test we don't send emails.

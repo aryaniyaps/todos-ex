@@ -23,11 +23,8 @@ config :todos, TodosWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "imSWBMpT58Lh4ArTfjGfc8fsJThQbMIl1mekTIqa58Isj7WhQkhHvLpNTB0BuH2O",
-  watchers: [
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
-  ]
+  secret_key_base: "/kTmYF+m+OfOKNjihOzzA0dUa1vGwO7/tVZX3Y6K2a04rITjHxpq6YJ6HMQf7KqX",
+  watchers: []
 
 # ## SSL Support
 #
@@ -51,16 +48,6 @@ config :todos, TodosWeb.Endpoint,
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
 # different ports.
-
-# Watch static and templates for browser reloading.
-config :todos, TodosWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/todos_web/(controllers|live|components)/.*(ex|heex)$"
-    ]
-  ]
 
 # Enable dev routes for dashboard and mailbox
 config :todos, dev_routes: true

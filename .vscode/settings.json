@@ -1,4 +1,5 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "emmet.includeLanguages": {
     "phoenix-heex": "html"
   }
