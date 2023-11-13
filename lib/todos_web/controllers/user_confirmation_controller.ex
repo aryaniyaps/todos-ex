@@ -4,12 +4,13 @@ defmodule TodosWeb.UserConfirmationController do
   alias Todos.Accounts
 
   def create(conn, %{"user" => %{"email" => email}}) do
-    if Accounts.get_user_by_email(email) do
-      # If the email is found, send the confirmation instructions.
-      Accounts.deliver_user_confirmation_instructions(
-        user,
-        &confirmation_url(conn, &1)
-      )
+    case Accounts.get_user_by_email(email) do
+      {:ok, user} ->
+        # If the email is found, send the confirmation instructions.
+        Accounts.deliver_user_confirmation_instructions(
+          user,
+          &confirmation_url(conn, &1)
+        )
     end
 
     # Respond with a generic message either way to avoid email enumeration

@@ -32,7 +32,7 @@ defmodule TodosWeb.UserSettingsController do
     user = conn.assigns.current_user
 
     case Accounts.update_user_password(user, password, user_params) do
-      {:ok, user} ->
+      {:ok, _user} ->
         conn
         |> put_status(:ok) # Set the HTTP status code to 200 (OK)
         |> json(%{message: "Password updated successfully"})
