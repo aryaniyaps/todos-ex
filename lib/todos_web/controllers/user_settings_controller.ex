@@ -19,14 +19,11 @@ defmodule TodosWeb.UserSettingsController do
         )
 
         conn
-        |> put_flash(
-          :info,
-          "A link to confirm your email change has been sent to the new address."
-        )
-        |> redirect(to: ~p"/users/settings")
+        |> put_status(:ok) # Set the HTTP status code to 200 (OK)
+        |> json(%{message: "Email change confirmation link sent successfully"})
 
       {:error, changeset} ->
-        render(conn, :edit, email_changeset: changeset)
+        json(conn, %{error: "Failed to update email", changeset: changeset})
     end
   end
 
@@ -37,12 +34,11 @@ defmodule TodosWeb.UserSettingsController do
     case Accounts.update_user_password(user, password, user_params) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "Password updated successfully.")
-        |> put_session(:user_return_to, ~p"/users/settings")
-        |> UserAuth.log_in_user(user)
+        |> put_status(:ok) # Set the HTTP status code to 200 (OK)
+        |> json(%{message: "Password updated successfully"})
 
       {:error, changeset} ->
-        render(conn, :edit, password_changeset: changeset)
+        json(conn, %{error: "Failed to update password", changeset: changeset})
     end
   end
 
@@ -50,13 +46,11 @@ defmodule TodosWeb.UserSettingsController do
     case Accounts.update_user_email(conn.assigns.current_user, token) do
       :ok ->
         conn
-        |> put_flash(:info, "Email changed successfully.")
-        |> redirect(to: ~p"/users/settings")
+        |> put_status(:ok) # Set the HTTP status code to 200 (OK)
+        |> json(%{message: "Email changed successfully"})
 
       :error ->
-        conn
-        |> put_flash(:error, "Email change link is invalid or it has expired.")
-        |> redirect(to: ~p"/users/settings")
+        json(conn, %{error: "Failed to update email", message: "Email change link is invalid or it has expired."})
     end
   end
 

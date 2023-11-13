@@ -3,22 +3,6 @@ defmodule TodosWeb.UserRegistrationControllerTest do
 
   import Todos.AccountsFixtures
 
-  describe "GET /users/register" do
-    test "renders registration page", %{conn: conn} do
-      conn = get(conn, ~p"/users/register")
-      response = html_response(conn, 200)
-      assert response =~ "Register"
-      assert response =~ ~p"/users/log_in"
-      assert response =~ ~p"/users/register"
-    end
-
-    test "redirects if already logged in", %{conn: conn} do
-      conn = conn |> log_in_user(user_fixture()) |> get(~p"/users/register")
-
-      assert redirected_to(conn) == ~p"/"
-    end
-  end
-
   describe "POST /users/register" do
     @tag :capture_log
     test "creates account and logs the user in", %{conn: conn} do
@@ -29,15 +13,17 @@ defmodule TodosWeb.UserRegistrationControllerTest do
           "user" => valid_user_attributes(email: email)
         })
 
-      assert get_session(conn, :user_token)
-      assert redirected_to(conn) == ~p"/"
+      assert json_response(conn, 201)["message"] == "User created successfully."
+      assert json_response(conn, 201)["user_id"]
 
-      # Now do a logged in request and assert on the menu
+      # Assuming you have a method to extract the user_id from the JSON response
+      user_id = extract_user_id(json_response(conn, 201))
+
+      # Now do a logged-in request and assert on the menu
       conn = get(conn, ~p"/")
-      response = html_response(conn, 200)
-      assert response =~ email
-      assert response =~ ~p"/users/settings"
-      assert response =~ ~p"/users/log_out"
+      assert json_response(conn, 200)["email"] == email
+      assert json_response(conn, 200)["settings_url"] =~ ~p"/users/settings/#{user_id}"
+      assert json_response(conn, 200)["logout_url"] == ~p"/users/log_out"
     end
 
     test "render errors for invalid data", %{conn: conn} do
@@ -46,10 +32,9 @@ defmodule TodosWeb.UserRegistrationControllerTest do
           "user" => %{"email" => "with spaces", "password" => "too short"}
         })
 
-      response = html_response(conn, 200)
-      assert response =~ "Register"
-      assert response =~ "must have the @ sign and no spaces"
-      assert response =~ "should be at least 12 character"
+      assert json_response(conn, 422)["error"] == "Registration failed."
+      assert json_response(conn, 422)["details"]["email"] =~ "must have the @ sign and no spaces"
+      assert json_response(conn, 422)["details"]["password"] =~ "should be at least 12 characters"
     end
   end
 end

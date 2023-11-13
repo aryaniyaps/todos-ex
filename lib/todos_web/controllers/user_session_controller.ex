@@ -9,17 +9,20 @@ defmodule TodosWeb.UserSessionController do
 
     if user = Accounts.get_user_by_email_and_password(email, password) do
       conn
-      |> put_flash(:info, "Welcome back!")
-      |> UserAuth.log_in_user(user, user_params)
+      |> put_status(:ok) # Set the HTTP status code to 200 (OK)
+      |> json(%{message: "Welcome back!", user_id: user.id})
+
     else
-      # In order to prevent user enumeration attacks, don't disclose whether the email is registered.
-      render(conn, :new, error_message: "Invalid email or password")
+      conn
+      |> put_status(:unauthorized) # Set unauthorized status code
+      |> json(%{error: "Invalid email or password"})
     end
   end
 
   def delete(conn, _params) do
     conn
-    |> put_flash(:info, "Logged out successfully.")
+    |> put_status(:ok) # Set the HTTP status code to 200 (OK)
+    |> json(%{message: "Logged out successfully."})
     |> UserAuth.log_out_user()
   end
 end

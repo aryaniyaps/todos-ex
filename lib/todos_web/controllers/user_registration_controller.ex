@@ -11,15 +11,22 @@ defmodule TodosWeb.UserRegistrationController do
         {:ok, _} =
           Accounts.deliver_user_confirmation_instructions(
             user,
-            &url(~p"/users/confirm/#{&1}")
+            &confirmation_url(conn, &1)
           )
 
         conn
-        |> put_flash(:info, "User created successfully.")
-        |> UserAuth.log_in_user(user)
+        |> put_status(:created) # Set the HTTP status code to 201 (Created)
+        |> json(%{message: "User created successfully.", user_id: user.id})
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :new, changeset: changeset)
+        conn
+        |> put_status(:unprocessable_entity) # Set error status code
+        |> json(%{error: "Registration failed.", details: changeset.errors})
     end
+  end
+
+  # Helper function to generate the confirmation URL
+  defp confirmation_url(conn, token) do
+    TodosWeb.Endpoint.url(conn) <> "users/confirm/#{token}"
   end
 end
