@@ -1,5 +1,8 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "elixir.formatter": {
+    "mixFormatArgs": "--dry-run"
+  },
   "emmet.includeLanguages": {
     "phoenix-heex": "html"
   }
