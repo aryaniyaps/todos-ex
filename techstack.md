@@ -3,11 +3,11 @@
 ## Tech Stack
 aryaniyaps/todos-ex is built on the following main stack:
 
-- [Ruby](https://www.ruby-lang.org) – Languages
-- [PostgreSQL](http://www.postgresql.org/) – Databases
 - [Elixir](http://elixir-lang.org/) – Languages
-- [Cowboy](https://github.com/ninenines/cowboy) – Web Servers
+- [Ruby](https://www.ruby-lang.org) – Languages
 - [Phoenix Framework](http://www.phoenixframework.org) – Frameworks (Full Stack)
+- [PostgreSQL](http://www.postgresql.org/) – Databases
+- [Cowboy](https://github.com/ninenines/cowboy) – Web Servers
 
 Full tech stack [here](/techstack.md)
 
@@ -17,11 +17,11 @@ Full tech stack [here](/techstack.md)
 ## Tech Stack
 aryaniyaps/todos-ex is built on the following main stack:
 
-- <img width='25' height='25' src='https://img.stackshare.io/service/989/ruby.png' alt='Ruby'/> [Ruby](https://www.ruby-lang.org) – Languages
-- <img width='25' height='25' src='https://img.stackshare.io/service/1028/ASOhU5xJ.png' alt='PostgreSQL'/> [PostgreSQL](http://www.postgresql.org/) – Databases
 - <img width='25' height='25' src='https://img.stackshare.io/service/1974/drop.png' alt='Elixir'/> [Elixir](http://elixir-lang.org/) – Languages
-- <img width='25' height='25' src='https://img.stackshare.io/service/2738/1166740.png' alt='Cowboy'/> [Cowboy](https://github.com/ninenines/cowboy) – Web Servers
+- <img width='25' height='25' src='https://img.stackshare.io/service/989/ruby.png' alt='Ruby'/> [Ruby](https://www.ruby-lang.org) – Languages
 - <img width='25' height='25' src='https://img.stackshare.io/service/3262/-s9uoLIN.png' alt='Phoenix Framework'/> [Phoenix Framework](http://www.phoenixframework.org) – Frameworks (Full Stack)
+- <img width='25' height='25' src='https://img.stackshare.io/service/1028/ASOhU5xJ.png' alt='PostgreSQL'/> [PostgreSQL](http://www.postgresql.org/) – Databases
+- <img width='25' height='25' src='https://img.stackshare.io/service/2738/1166740.png' alt='Cowboy'/> [Cowboy](https://github.com/ninenines/cowboy) – Web Servers
 
 Full tech stack [here](/techstack.md)
 
@@ -32,7 +32,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [aryaniyaps/todos-ex](https://github.com/aryaniyaps/todos-ex)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|7<br/>Tools used|01/20/24 <br/>Report generated|
+|7<br/>Tools used|02/29/24 <br/>Report generated|
 |------|------|
 </div>
 
